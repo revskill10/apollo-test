@@ -38,22 +38,22 @@ const EventLog = () => (
   </Subscription>
 )
 
+const renderUsers = (users) =>
+  <div className='w-100 flex justify-center'>
+    <div className='w-100' style={{ maxWidth: 400 }}>
+      {users.map((user) =>
+        <User key={user.id} user={user} />
+      )}
+    </div>
+    <EventLog />
+  </div>
+
 const UsersList = () => (
   <Query query={ALL_USERS_QUERY}>
     {({ loading, error, data }) => {
       if (loading) return "Loading...";
       if (error) return `Error! ${error.message}`;
-
-      return (
-        <div className='w-100 flex justify-center'>
-          <div className='w-100' style={{ maxWidth: 400 }}>
-            {data.allUsers.map((user) =>
-              <User key={user.id} user={user} />
-            )}
-          </div>
-          <EventLog />
-        </div>
-      );
+      if (data.allUsers) return renderUsers(data.allUsers);
     }}
   </Query>
 );

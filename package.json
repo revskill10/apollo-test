@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "main": "index.js",
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.2",
+    "antd": "^3.8.2",
     "apollo-client": "^2.4.0",
     "fusion-apollo": "^1.2.1",
     "fusion-apollo-universal-client": "^1.3.0",
@@ -16,6 +18,7 @@
     "fusion-tokens": "^1.0.4",
     "graphql-tag": "^2.9.2",
     "isomorphic-fetch": "^2.2.1",
+    "next": "^6.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-apollo": "^2.1.11",
@@ -34,6 +37,11 @@
     "start": "fusion start"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.0.0-rc.2",
+    "babel-core": "^6.26.3",
+    "babel-plugin-import": "^1.8.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "enzyme": "^3.4.4"
   }
 }
