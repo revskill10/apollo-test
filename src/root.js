@@ -1,15 +1,12 @@
 // @flow
 import React from 'react';
-import {Route, Switch} from 'fusion-plugin-react-router';
-
-import Home from './pages/home.js';
-import PageNotFound from './pages/pageNotFound.js';
+import ListUser from './components/ListUser';
 
 const root = (
-  <Switch>
-    <Route exact path="/" component={Home} />
-    <Route component={PageNotFound} />
-  </Switch>
+  <div>
+    Hello
+    <ListUser />
+  </div>
 );
 
 export default root;

@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 import {styled} from 'fusion-plugin-styletron-react';
+import ListUser from '../components/ListUser';
 
 const Center = styled('div', {
   fontFamily: 'HelveticaNeue-Light, Arial',
@@ -60,13 +61,8 @@ const Home = () => (
     <Center>
       <FusionStyle>Fusion.js</FusionStyle>
 
-      <Center>
-        <Circle>
-          <GettingStartedLink href="https://fusionjs.com/docs/getting-started">
-            Let&apos;s Get Started
-          </GettingStartedLink>
-        </Circle>
-      </Center>
+      <ListUser />
+     
     </Center>
   </FullHeightDiv>
 );
