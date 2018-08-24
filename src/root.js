@@ -6,7 +6,6 @@ import {assetUrl} from 'fusion-core';
 
 import Home from './pages/home.js';
 import PageNotFound from './pages/pageNotFound.js';
-import ListUser from './components/ListUser';
 
 const root = (
   <div>
@@ -18,7 +17,6 @@ const root = (
     </Helmet>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/users" component={ListUser} />
       <Route component={PageNotFound} />
     </Switch>
   </div>  

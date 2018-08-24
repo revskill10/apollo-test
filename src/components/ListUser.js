@@ -4,37 +4,52 @@ import gql from 'graphql-tag'
 
 const User = ({user}) => 
   <div>
-    Email: { user.email }
-    First Name: { user.firstName }
-    Last Name: { user.lastName }
+    Id: { user.id }
+    Username: { user.username }
   </div>
 
 const ALL_USERS_QUERY = gql`
-  query allUsersQuery {
-    allUsers {
-      email
+  query {
+    users{
       id
-      firstName
-      lastName
+      username
+    }
+    me{
+      id
+      username
     }
   }
 `
 
-const TODO_ADDED = gql`
-  subscription{
-    todoAdded {
-      id
-      title
-      completed
+const MESSAGE_CREATED = gql`
+  subscription {
+    messageCreated {
+      message {
+        id
+        text
+    
+        user {
+          id
+          username
+        }
+      }
     }
   }
 `
+
+const renderEvent = (event) => 
+  <React.Fragment>
+    <h4>Text: {event.message.text}</h4>
+  </React.Fragment>
 
 const EventLog = () => (
-  <Subscription subscription={TODO_ADDED}>
-    {({ data, loading }) => (
-      <h4>New todo: {!loading && data.todoAdded && data.todoAdded.title}</h4>
-    )}
+  <Subscription subscription={MESSAGE_CREATED} shouldResubscribe={true}>
+    {({ loading, error, data }) => {
+      if (loading) return "Loading...";
+      if (error) return `Error! ${error.message}`;
+      if (data && data.messageCreated) return renderEvent(data.messageCreated)
+      else return <div>Lol</div>;
+    }}
   </Subscription>
 )
 
@@ -44,18 +59,20 @@ const renderUsers = (users) =>
       {users.map((user) =>
         <User key={user.id} user={user} />
       )}
-    </div>
-    <EventLog />
+    </div>    
   </div>
 
 const UsersList = () => (
-  <Query query={ALL_USERS_QUERY}>
-    {({ loading, error, data }) => {
-      if (loading) return "Loading...";
-      if (error) return `Error! ${error.message}`;
-      if (data.allUsers) return renderUsers(data.allUsers);
-    }}
-  </Query>
+  <div>
+    <Query query={ALL_USERS_QUERY}>
+      {({ loading, error, data }) => {
+        if (loading) return "Loading...";
+        if (error) return `Error! ${error.message}`;
+        if (data.users) return renderUsers(data.users);
+      }}
+    </Query>
+    <EventLog />
+  </div>
 );
 
 export default UsersList

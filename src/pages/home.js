@@ -1,7 +1,6 @@
 // @flow
 import React from 'react';
 import {styled} from 'fusion-plugin-styletron-react';
-import ListUser from '../components/ListUser';
 import Complete from '../components/Complete';
 
 const Center = styled('div', {
@@ -31,7 +30,6 @@ const Home = () => (
     </style>
     <Center>
       <Complete />
-      <ListUser />
     </Center>
   </FullHeightDiv>
 );
