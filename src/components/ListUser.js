@@ -1,6 +1,8 @@
 import React from 'react'
 import { Query, Subscription } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Provider, Subscribe } from 'unstated';
+import { SharedNotificationContainer } from '../containers/Notification';
 
 const User = ({user}) => 
   <div>
@@ -37,20 +39,36 @@ const MESSAGE_CREATED = gql`
   }
 `
 
-const renderEvent = (event) => 
-  <React.Fragment>
-    <h4>Text: {event.message.text}</h4>
-  </React.Fragment>
-
+class Event extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.message !== prevProps.message){
+      this.props.noti.onNewData(this.props.message.text);
+    }
+  }
+  render() {
+    const { noti } = this.props;
+    return (
+      <h4>Text: {noti.state.message}</h4>
+    )
+  }
+}
 const EventLog = () => (
-  <Subscription subscription={MESSAGE_CREATED} shouldResubscribe={true}>
-    {({ loading, error, data }) => {
-      if (loading) return "Loading...";
-      if (error) return `Error! ${error.message}`;
-      if (data && data.messageCreated) return renderEvent(data.messageCreated)
-      else return <div>Lol</div>;
-    }}
-  </Subscription>
+  <Subscribe to={[SharedNotificationContainer]}>
+    {noti => (
+      <Subscription subscription={MESSAGE_CREATED}>
+      {({ loading, error, data }) => {
+        if (loading) return "Loading...";
+        if (error) return `Error! ${error.message}`;
+        if (data && data.messageCreated) {
+          return <Event noti={noti} message={data.messageCreated.message} />
+        } else return <div>Lol</div>;
+      }}
+    </Subscription>
+    )}
+  </Subscribe>
 )
 
 const renderUsers = (users) =>
@@ -71,7 +89,9 @@ const UsersList = () => (
         if (data.users) return renderUsers(data.users);
       }}
     </Query>
-    <EventLog />
+    <Provider>
+      <EventLog />  
+    </Provider>
   </div>
 );
 

@@ -15,7 +15,7 @@
     "fusion-plugin-react-router": "^1.2.0",
     "fusion-plugin-styletron-react": "^2.5.2",
     "fusion-plugin-universal-events": "^1.1.0",
-    "fusion-react": "^1.2.0",
+    "fusion-react": "^1.2.1",
     "fusion-tokens": "^1.0.4",
     "git": "^0.1.5",
     "graphql-tag": "^2.9.2",
@@ -26,7 +26,8 @@
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.2",
     "styletron-react": "^4.3.5",
-    "unfetch": "^3.1.1"
+    "unfetch": "^3.1.1",
+    "unstated": "^2.1.1"
   },
   "resolutions": {
     "graphql": "14.0.0-rc.2"
@@ -41,7 +42,6 @@
   "devDependencies": {
     "@babel/preset-env": "^7.0.0-rc.2",
     "babel-core": "^6.26.3",
-    "babel-plugin-import": "^1.8.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "enzyme": "^3.4.4"
