@@ -2,7 +2,7 @@
 import React from 'react';
 import {styled} from 'fusion-plugin-styletron-react';
 import { Layout } from 'antd';
-import Nav from '../Nav';
+import Nav from './Nav';
 const { Header, Footer, Content } = Layout;
 const FullHeightDiv = styled('div', {
   height: '100%',

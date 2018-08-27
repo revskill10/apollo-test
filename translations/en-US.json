@@ -1,0 +1,4 @@
+{
+  "HomeHeader": "Home1",
+  "Greeting": "Hello, ${name}"
+}

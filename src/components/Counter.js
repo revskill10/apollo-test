@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Provider, Subscribe } from 'unstated';
+import { Subscribe } from 'unstated';
 import { Button, Icon } from 'antd';
 import CounterContainer from '../containers/Counter';
 
@@ -18,8 +18,4 @@ function Counter() {
   );
 }
 
-export default () => (
-  <Provider>
-    <Counter />
-  </Provider>
-)
+export default Counter;

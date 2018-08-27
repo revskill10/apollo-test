@@ -4,6 +4,8 @@ import ListUser from './ListUser';
 import Me from './Me';
 import SampleTable from './SampleTable';
 import Counter from './Counter';
+import Messages from './Messages';
+
 const TabPane = Tabs.TabPane;
 
 function callback(key) {
@@ -16,4 +18,5 @@ export default () =>
     <TabPane tab="Me" key="2"><Me /></TabPane>
     <TabPane tab="Table" key="3"><SampleTable /></TabPane>
     <TabPane tab="Counter" key="4"><Counter /></TabPane>
+    <TabPane tab="Messages" key="5"><Messages /></TabPane>
   </Tabs>

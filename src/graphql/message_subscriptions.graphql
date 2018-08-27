@@ -1,0 +1,13 @@
+subscription message_created {
+  messageCreated {
+    message {
+      id
+      text
+  
+      user {
+        id
+        username
+      }
+    }
+  }
+}

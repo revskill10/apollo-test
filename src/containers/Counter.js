@@ -5,7 +5,7 @@ type CounterState = {
 
 class CounterContainer extends Container<CounterState> {
   state = {
-    count: 0
+    count: 0,
   };
 
   increment() {

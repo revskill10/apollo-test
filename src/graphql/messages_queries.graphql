@@ -1,0 +1,10 @@
+query all_messages_query {
+  messages {
+    id
+    text
+    user {
+      id
+      username
+    }
+  }
+}

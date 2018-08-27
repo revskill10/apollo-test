@@ -1,0 +1,4 @@
+{
+  "HomeHeader": "Chào mừng!",
+  "Greeting": "Xin chào, ${name}"
+}
