@@ -1,6 +1,7 @@
 import '@babel/core';
 import 'babel-polyfill';
 import 'isomorphic-fetch';
+import bodyparser from 'koa-bodyparser';
 import App, {
   ApolloClientToken,
   ApolloContextToken
@@ -78,24 +79,20 @@ export default () => {
   app.register(ApolloClientEndpointToken, config.graphQLEndpoint);
   
   if (__NODE__) {
+    app.middleware(bodyparser());
     app.register(ApolloServer);
     app.register(ApolloServerEndpointToken, config.graphQLEndpoint);
     app.register(GraphQLSchemaToken, makeExecutableSchema({
       typeDefs,
       resolvers,
     }));
+    
     app.register(ApolloContextToken, ctx => {
       return {
         httpContext: ctx,
         me: me
       };
     });
-
-    app.register(SessionToken, JWTSession);
-    app.register(SessionSecretToken, 'some-secret'); // required
-    app.register(SessionCookieNameToken, 'token'); // required
-    app.register(SessionCookieExpiresToken, 86400); // optional
   }
- 
   return app;
 };

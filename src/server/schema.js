@@ -73,7 +73,9 @@ export const resolvers = {
     user: (_parent, { id }) => {
       return users[id]
     },
-    users: () => {
+    users: (_parent, _args, { httpContext }) => {
+      console.log(JSON.stringify(httpContext));
+      httpContext.cookies.set("token1", "abcde")
       return Object.values(users);
     },
     messages: () => {

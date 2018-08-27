@@ -1,4 +1,4 @@
 const config = {
-  graphQLEndpoint: '/graphql',
+  graphQLEndpoint: '/graphql2',
 };
 export default config;
