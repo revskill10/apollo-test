@@ -47,10 +47,13 @@ import {SessionToken} from 'fusion-tokens';
 import ApolloServer, {ApolloServerEndpointToken} from 'fusion-plugin-apollo-server';
 import {GraphQLSchemaToken} from 'fusion-apollo';
 import {makeExecutableSchema} from 'graphql-tools';
-import {typeDefs, resolvers, me} from './server/schema';
+import {resolvers, me} from './server/schema';
+import { importSchema } from 'graphql-import'
+import path from 'path';
+
 
 export default () => {
-  
+  const typeDefs = __NODE__ && importSchema(path.join(__dirname, '/graphql/schema.graphql'));  
   const app = new App(root);
   __BROWSER__ && app.register(FetchToken, window.fetch);
   __NODE__ && app.register(FetchToken, unfetch);

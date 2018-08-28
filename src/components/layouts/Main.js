@@ -2,7 +2,6 @@
 import React from 'react';
 import {styled} from 'fusion-plugin-styletron-react';
 import { Layout } from 'antd';
-import Nav from './Nav';
 const { Header, Footer, Content } = Layout;
 const FullHeightDiv = styled('div', {
   height: '100%',
@@ -31,9 +30,7 @@ const Main = ({ children }) => (
           input::-webkit-inner-spin-button,input::-webkit-outer-spin-button,input::-webkit-search-cancel-button,input::-webkit-search-decoration,input::-webkit-search-results-button,input::-webkit-search-results-decoration{display:none;}
         `}
       </style>
-      <Header style={backgroundStyle}>
-        <Nav />
-      </Header>       
+    
       <Layout style={contentStyle}>
         <Content>{ children }</Content>
       </Layout>

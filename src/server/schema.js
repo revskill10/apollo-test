@@ -1,4 +1,3 @@
-import gql from 'graphql-tag';
 import uuidv4 from 'uuid/v4';
 
 let users = {
@@ -28,42 +27,6 @@ let messages = {
 };
 
 let me = users[1];
-
-export const typeDefs = gql`
-  type Query {
-    me: User
-    user(id: ID!): User
-    users: [User!]
-
-    messages: [Message!]!
-    message(id: ID!): Message!
-  }
-
-  type User {
-    id: ID!
-    username: String!
-    messages: [Message!]
-  }
-
-  type Message {
-    id: ID!
-    text: String!
-    user: User!
-  }
-
-  type Mutation {
-    createMessage(text: String!): Message!
-    deleteMessage(id: ID!): Boolean!
-  }
-
-  type MessageCreated {
-    message: Message!
-  }
-
-  type Subscription {
-    messageCreated: MessageCreated!
-  }
-`;
 
 export const resolvers = {
   Query: {

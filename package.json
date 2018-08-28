@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "main": "index.js",
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.2",
     "antd": "^3.8.2",
     "apollo-client": "^2.4.0",
     "apollo-link": "^1.2.2",
@@ -25,6 +24,8 @@
     "fusion-react": "^1.2.1",
     "fusion-tokens": "^1.0.4",
     "git": "^0.1.5",
+    "graphql": "git://github.com/graphql/graphql-js.git#npm",
+    "graphql-import": "^0.6.0",
     "graphql-tag": "^2.9.2",
     "graphql-tools": "^3.1.1",
     "isomorphic-fetch": "^2.2.1",
@@ -41,8 +42,7 @@
     "subscriptions-transport-ws": "^0.9.14",
     "unfetch": "^3.1.1",
     "unstated": "^2.1.1",
-    "uuid": "^3.3.2",
-    "websocket": "^1.0.26"
+    "uuid": "^3.3.2"
   },
   "resolutions": {
     "graphql": "14.0.0-rc.2"
@@ -50,8 +50,8 @@
   "scripts": {
     "dev": "rm -rf ./node_modules/.cache/babel-loader && fusion dev",
     "test": "fusion test",
-    "build": "fusion build",
-    "build-production": "fusion build --production",
+    "build-dev": "fusion build",
+    "build": "fusion build --production",
     "start": "fusion start"
   },
   "devDependencies": {
