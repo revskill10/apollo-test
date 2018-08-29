@@ -5,7 +5,10 @@ type Query {
 
   messages: [Message!]!
   message(id: ID!): Message!
+
 }
+
+scalar Upload 
 
 type User {
   id: ID!
@@ -22,6 +25,7 @@ type Message {
 type Mutation {
   createMessage(text: String!): Message!
   deleteMessage(id: ID!): Boolean!
+  uploadFile(file: Upload!): String!
 }
 
 type MessageCreated {

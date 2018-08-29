@@ -1,4 +1,5 @@
 const config = {
-  graphQLEndpoint: '/graphql2',
+  graphQLEndpoint: '/graphql',
+  graphQLWsEndpoint: 'ws://localhost:3000/graphql',
 };
 export default config;

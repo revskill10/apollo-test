@@ -1,10 +1,7 @@
 import React from 'react';
-import SharedNotificationContainer from '../containers/Notification';
-import { message_created } from '../graphql/message_subscriptions.graphql'
-import { notification, List } from 'antd';
 import { all_messages_query } from '../graphql/messages_queries.graphql';
 import { Query } from 'react-apollo';
-
+import { List } from 'antd';
 const renderMessages = (messages) => (
   <List
       header={<div>Header</div>}

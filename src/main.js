@@ -1,5 +1,9 @@
-import '@babel/core';
-import 'babel-polyfill';
+__NODE__ && require("@babel/core").transform("code", {
+  plugins: [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }]
+  ]
+});
+import '@babel/polyfill';
 import 'isomorphic-fetch';
 import bodyparser from 'koa-bodyparser';
 import App, {
@@ -15,9 +19,8 @@ import UniversalEvents, {
 import ApolloClientPlugin, {
   ApolloClientEndpointToken,
   ApolloClientWsEndpointToken,
-  ApolloClientLinkToken,
-  ApolloClientCredentialsToken
-} from 'fusion-apollo-universal-client';
+  ApolloCacheToken,
+} from './plugins/apollo-client';
 
 import HelmetPlugin from 'fusion-plugin-react-helmet-async';
 
@@ -27,7 +30,7 @@ import config from '../config/config';
 
 import {FetchToken} from 'fusion-tokens';
 
-import {createPlugin} from 'fusion-core';
+import {createPlugin, HttpServerToken} from 'fusion-core';
 
 import unfetch from 'unfetch';
 
@@ -42,7 +45,6 @@ import JWTSession, {
   SessionCookieNameToken,
   SessionCookieExpiresToken
 } from 'fusion-plugin-jwt';
-import {SessionToken} from 'fusion-tokens';
 
 import ApolloServer, {ApolloServerEndpointToken} from 'fusion-plugin-apollo-server';
 import {GraphQLSchemaToken} from 'fusion-apollo';
@@ -50,6 +52,8 @@ import {makeExecutableSchema} from 'graphql-tools';
 import {resolvers, me} from './server/schema';
 import { importSchema } from 'graphql-import'
 import path from 'path';
+
+import { apolloUploadKoa } from 'apollo-upload-server';
 
 
 export default () => {
@@ -75,14 +79,16 @@ export default () => {
       return next();
     }
   }));
-  
+
   app.register(Styletron);
   app.register(UniversalEventsToken, UniversalEvents);
   app.register(ApolloClientToken, ApolloClientPlugin);    
   app.register(ApolloClientEndpointToken, config.graphQLEndpoint);
+  //app.register(ApolloClientWsEndpointToken, config.graphQLWsEndpoint);
   
   if (__NODE__) {
     app.middleware(bodyparser());
+    app.middleware(apolloUploadKoa({ maxFileSize: 10000000, maxFiles: 10 }));
     app.register(ApolloServer);
     app.register(ApolloServerEndpointToken, config.graphQLEndpoint);
     app.register(GraphQLSchemaToken, makeExecutableSchema({
