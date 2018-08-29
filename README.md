@@ -6,7 +6,7 @@ Visit our documentation at: https://fusionjs.com
 
 ## Demo
 
-[Demo](https://example-fusion-app-nnoufgwthp.now.sh/)
+[Demo](https://example-fusion-app-egzowtbrnd.now.sh/)
 
 ## Building
 
@@ -17,5 +17,5 @@ npm run build
 ## Deployment to Now
 
 ```
-now
+now --dotenv --public
 ```
