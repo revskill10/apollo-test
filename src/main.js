@@ -55,7 +55,6 @@ import path from 'path';
 
 import { apolloUploadKoa } from 'apollo-upload-server';
 
-
 export default () => {
   const typeDefs = __NODE__ && importSchema(path.join(__dirname, '/graphql/schema.graphql'));  
   const app = new App(root);
@@ -87,7 +86,7 @@ export default () => {
   //app.register(ApolloClientWsEndpointToken, config.graphQLWsEndpoint);
   
   if (__NODE__) {
-    app.middleware(bodyparser());
+    app.middleware(bodyparser());    
     app.middleware(apolloUploadKoa({ maxFileSize: 10000000, maxFiles: 10 }));
     app.register(ApolloServer);
     app.register(ApolloServerEndpointToken, config.graphQLEndpoint);
