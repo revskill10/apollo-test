@@ -101,6 +101,17 @@ export default () => {
         me: me
       };
     });
+    if (!__DEV__) {
+      app.register(createPlugin({
+        middleware: () => {
+          const helmet = require('koa-helmet')();
+          return async (ctx, next) => {
+            await helmet(ctx, () => Promise.resolve());
+            await next();
+          }
+        }
+      }));
+    }
   }
   return app;
 };

@@ -1,8 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 import { all_users_query } from '../graphql/users_queries.graphql'
-import VictoryBar from './charts/VictoryBar';
-import Candle from './charts/Candle';
+import Steps from './ListUser/steps';
 
 const User = ({user}) => 
   <div>
@@ -16,9 +15,8 @@ const renderUsers = (users) =>
     <div className='w-100' style={{ maxWidth: 400 }}>
       {users.map((user) =>
         <User key={user.id} user={user} />
-      )}
-      <VictoryBar />
-      <Candle />
+      )}      
+      <Steps />
     </div>    
   </div>
 

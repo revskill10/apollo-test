@@ -1,9 +1,10 @@
 import React from 'react';
 import { Steps, Button, message } from 'antd';
-import Chart from '../charts/Colorrose';
+import VictoryBar from '../charts/VictoryBar';
+import Candle from '../charts/Candle';
+import {split} from 'fusion-react';
 
 const Step = Steps.Step;
-
 
 const steps = [{
   title: 'First',
@@ -43,7 +44,8 @@ class App extends React.Component {
         </Steps>
         <div className="steps-content">
           {steps[current].content}
-          <Chart />
+          <VictoryBar />
+          <Candle />
         </div>
         <div className="steps-action">
           {

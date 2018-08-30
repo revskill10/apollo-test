@@ -1,8 +1,6 @@
-# Fusion.js application
+# Fusion.js boilerplate
 
-Welcome to your Fusion.js application. Get started by running the application with `yarn dev` in a terminal.
-
-Visit our documentation at: https://fusionjs.com
+A kitchen-sink boilerplate for your next project.
 
 ## Demo
 
@@ -19,3 +17,7 @@ npm run build
 ```
 now --dotenv --public
 ```
+
+## Is this production ready ?
+
+Yes
